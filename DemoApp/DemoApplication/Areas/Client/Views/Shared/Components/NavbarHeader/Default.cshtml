@@ -1,0 +1,22 @@
+﻿@model List<NavbarListItemViewModel>
+
+
+        <ul>
+            @foreach (var navbar in Model)
+            {
+
+                <li class="drop-holder">
+                    <a href="@navbar.Url">@navbar.Name</a>
+                    <ul class="drop-menu">
+                        @foreach (var subnavbar in @navbar.Subnavbars)
+                        {
+
+                            <li>
+                                <a href="@subnavbar.Url">@subnavbar.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            
+        </ul>

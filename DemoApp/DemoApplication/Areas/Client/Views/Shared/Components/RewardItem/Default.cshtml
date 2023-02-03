@@ -1,0 +1,13 @@
+﻿@using DemoApplication.Areas.Client.ViewModels.Reward
+@model List<ItemViewModel>
+
+@foreach (var reward in Model)
+{
+
+    <div class="swiper-slide">
+        <a class="brand-item" href="#">
+            <img src="~/@reward.ImageUrl"
+             alt="@reward.ImageName" />
+        </a>
+    </div>
+}

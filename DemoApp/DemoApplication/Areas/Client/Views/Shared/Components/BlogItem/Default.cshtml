@@ -1,0 +1,48 @@
+﻿@model List<BlogItemViewModel>
+
+@foreach (var blog in Model)
+{
+
+    <div class="swiper-slide">
+        <div class="blog-item">
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <ul>
+                        <li class="author">
+                            <a href="#">By: @blog.User</a>
+                        </li>
+                        <li class="date">@blog.CreatedAt</li>
+                    </ul>
+                </div>
+                <h2 class="title">
+                    <a asp-route="client-blog-details" asp-route-id="@blog.Id">@blog.Title</a>
+                </h2>
+                <p class="short-desc mb-7">
+                   @blog.Content
+                </p>
+            </div>
+            <div class="blog-img img-hover-effect">
+                @if(blog.ImageUrl is not null)
+                {
+                    
+                <a asp-route="client-blog-details" asp-route-id="@blog.Id">
+                    <img class="" 
+                     src="~/@blog.ImageUrl" width="300px"
+                     alt="Blog Image" />
+                </a>
+                }
+                @if(blog.VideoUrl is not null)
+                {
+                     <a href="blog.html">
+                   <video src="@blog.VideoUrl"></video>
+                </a>
+                }
+                <div class="inner-btn-wrap">
+                    <a class="inner-btn" href="blog.html">
+                        <i class="pe-7s-link"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
