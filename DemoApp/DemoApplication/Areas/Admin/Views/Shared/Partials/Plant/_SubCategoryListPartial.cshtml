@@ -1,0 +1,8 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using DemoApplication.Areas.Admin.ViewModels.Plant.Add
+@model SubCategoryListItemViewModel
+<div class="form-group">
+    <label>Sub Categories</label>
+    <select asp-for="SubCategoryId" asp-items="@(new SelectList(Model.SubCategories, nameof(SubCategoryListItemViewModel.SubCategorItemViewModel.Id), nameof(SubCategoryListItemViewModel.SubCategorItemViewModel.Title)))" class="form-select">                            </select>
+    <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+</div>
