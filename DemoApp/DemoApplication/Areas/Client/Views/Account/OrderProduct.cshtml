@@ -1,0 +1,54 @@
+﻿@using DemoApplication.Areas.Client.ViewModels.Account
+@model List<PlanttListItemViewModel>
+
+<div class="myaccount-orders">
+    <h4 class="small-title">MY ORDER PRODUCT</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>ORDER CODE</th>
+                    <th>PRODUCT IMAGE</th>
+                    <th>PRODUCR NAME</th>
+                    <th>PRODUCT COLOR</th>
+                    <th>PRODUCT SIZE</th>
+                    <th>PRODUCT PRICE</th>
+                    <th>PRODUCT QUANTITY</th>
+                    <th>TOTAL</th>
+                    <th></th>
+                </tr>
+                @foreach (var product in @Model)
+                {
+
+                    <tr>
+                        <td>
+                            <a>@product.OrderId</a>
+                        </td>
+                        <td>
+                            <img src="~/@product.ImageUrl">
+                        </td>
+                        <td>
+                            <a>@product.Name</a>
+                        </td>
+                        <td>
+                            <a>@product.Color</a>
+                        </td>
+                        <td>
+                            <a>@product.Size</a>
+                        </td>
+                        <td>
+                            <a>@product.Price</a>
+                        </td>
+                        <td>
+                            <a>@product.Quantity</a>
+                        </td>
+                        <td>
+                            <a>@product.Total</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model List<OrderListItemViewModel>
+
+
+
+    <div class="myaccount-orders">
+        <h4 class="small-title">MY ORDERS</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th>ORDER</th>
+                        <th>DATE</th>
+                        <th>STATUS</th>
+                        <th>TOTAL</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var order in Model)
+                    {
+                        
+                    <tr>
+                        <td>
+                            <a class="account-order-id" href="#">@order.Id</a>
+                        </td>
+                        <td>@order.OrderTime</td>
+                        <td>@order.OrderStatus</td>
+                        <td>$@order.OrderSum</td>
+                        <td>
+                            <a asp-route="client-account-order-products" asp-route-orderId="@order.Id" class="btn btn-dark"><span>View</span></a>
+                        </td>
+                    </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
