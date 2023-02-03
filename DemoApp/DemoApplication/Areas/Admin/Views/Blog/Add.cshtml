@@ -1,0 +1,59 @@
+﻿@using DemoApplication.Areas.Admin.ViewModels.Blog
+@model AddViewModel
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Plants</h4>
+            </div>
+            <div class="card-body">
+                <div class="general-label">
+                    <form method="POST" asp-route="admin-blog-add" enctype="multipart/form-data">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input multiple asp-for="Title" class="form-control">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Content</label>
+                            <input asp-for="Content" class="form-control">
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+
+                          <div class="form-group">
+                            <label>Video Url</label>
+                            <input asp-for="VideoUrl" class="form-control">
+                            <span asp-validation-for="VideoUrl" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categories</label>
+                            <select  asp-for="BlogCategoryId" asp-items="@(new SelectList(Model.BlogCategiries , nameof(BlogCategorItemViewModel.Id), nameof(BlogCategorItemViewModel.Title)))" class="form-select get-subcategories">                            </select>
+                            <span asp-validation-for="BlogCategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tags</label>
+                            <select asp-for="BlogTagIds" asp-items="@(new SelectList(Model.BlogTags , nameof(TagItemViewModel.Id), nameof(TagItemViewModel.Name)))" class="form-select get-subcategories">                            </select>
+                            <span asp-validation-for="BlogTagIds" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input multiple asp-for="BlogImages" class="form-control">
+                            <span asp-validation-for="BlogImages" class="text-danger"></span>
+                        </div>
+                         <div class="form-group">
+                            <label>Video</label>
+                            <input multiple asp-for="BlogVideos" class="form-control">
+                            <span asp-validation-for="BlogVideos" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+</div>
