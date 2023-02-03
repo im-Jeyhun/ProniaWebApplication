@@ -1,0 +1,43 @@
+﻿@model BlogImagesViewModel
+
+<div class="col-lg-12">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-route="admin-blog-image-add" asp-route-blogId="@Model.BlogId" class="btn btn-secondary">Add new blog image</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Blog Image</h4>
+        </div><!--end card-header-->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var blogImage in Model.Images)
+                        { 
+                            <tr>
+                                <td><img src="~/@blogImage.ImageUrL" /></td>
+                                <td class="text-end">
+                                    <a asp-route="admin-blog-image-update" asp-route-blogId="@Model.BlogId" asp-route-blogImageId="@blogImage.Id" ><i class="las la-pen text-secondary font-16"></i></a>
+                                    <form method="POST" asp-route="admin-blog-image-delete" asp-route-blogId="@Model.BlogId" asp-route-blogImageId="@blogImage.Id" id="blog-image-form-@blogImage.Id" ></form>
+                                    <button type="submit" form="blog-image-form-@blogImage.Id">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table><!--end /table-->
+            </div><!--end /tableresponsive-->
+        </div><!--end card-body-->
+    </div><!--end card-->
+</div> 
