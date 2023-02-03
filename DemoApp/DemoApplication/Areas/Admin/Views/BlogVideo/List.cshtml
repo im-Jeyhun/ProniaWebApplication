@@ -1,0 +1,44 @@
+﻿@model BlogVideViewModel
+
+<div class="col-lg-12">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-route="admin-book-video-add" asp-route-blogId="@Model.BlogId" class="btn btn-secondary">Add new book video</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Books</h4>
+        </div><!--end card-header-->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var plantVideo in Model.Videos)
+                        { 
+                            <tr>
+                                <td>
+                                    <video src="@plantVideo.ViedeoUrl"></video>
+                                <td class="text-end">
+                                    <a asp-route="admin-plant-video-update" asp-route-blogId="@Model.BlogId" asp-route-blogVideoId="@plantVideo.Id" ><i class="las la-pen text-secondary font-16"></i></a>
+                                    <form method="POST" asp-route="admin-plant-video-delete" asp-route-blogId="@Model.BlogId" asp-route-blogVideoId="@plantVideo.Id" id="plant-video-form-@plantVideo.Id" ></form>
+                                    <button type="submit" form="plant-video-form-@plantVideo.Id">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table><!--end /table-->
+            </div><!--end /tableresponsive-->
+        </div><!--end card-body-->
+    </div><!--end card-->
+</div> 
