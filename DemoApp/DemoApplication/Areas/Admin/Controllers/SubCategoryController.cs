@@ -1,6 +1,7 @@
 ﻿using DemoApplication.Areas.Admin.ViewModels.SubCategory;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,8 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/subcategory")]
+    [Authorize(Roles = "admin")]
+
     public class SubCategoryController : Controller
     {
         private readonly DataContext _dataContext;

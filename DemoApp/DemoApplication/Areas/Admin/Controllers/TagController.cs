@@ -8,6 +8,8 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/tag")]
+    [Authorize(Roles = "admin")]
+
     public class TagController : Controller
     {
         private readonly DataContext _dataContext;

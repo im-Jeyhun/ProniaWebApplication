@@ -1,11 +1,14 @@
 ﻿using DemoApplication.Areas.Admin.ViewModels.Contact;
 using DemoApplication.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/contact")]
+    [Authorize(Roles = "admin")]
+
     public class ContactController : Controller
     {
         private readonly DataContext _dataContext;

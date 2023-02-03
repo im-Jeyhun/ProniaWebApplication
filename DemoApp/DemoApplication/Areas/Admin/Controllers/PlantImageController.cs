@@ -11,7 +11,7 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/plant-image")]
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class BookImageController : Controller
     {
         private readonly DataContext _dataContext;

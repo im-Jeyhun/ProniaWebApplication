@@ -4,6 +4,7 @@ using DemoApplication.Contracts.User;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Services.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,8 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/fedback")]
+    [Authorize(Roles = "admin")]
+
     public class FedBackController : Controller
     {
         private readonly DataContext _dataContext;

@@ -11,7 +11,7 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/slider")]
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class SliderController : Controller
     {
         private readonly DataContext _dataContext;
