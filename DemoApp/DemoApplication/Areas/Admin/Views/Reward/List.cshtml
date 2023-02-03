@@ -1,0 +1,44 @@
+﻿@model List<ListItemViewModel>
+
+<div class="col-lg-12">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-route="admin-reward-add" class="btn btn-secondary">Add new reward</a>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Books</h4>
+        </div><!--end card-header-->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var reward in Model)
+                        {
+                            <tr>
+                               
+                                <td> <img src="~/@reward.ImageUrl" width="10%"> </td>
+                                <td class="text-end">
+                                    <a asp-route="admin-reward-update" asp-route-id="@reward.Id"><i class="las la-pen text-secondary font-16"></i></a>
+                                    <form method="POST" asp-route="admin-reward-delete" asp-route-id="@reward.Id" id="reward-form-@reward.Id"></form>
+                                    <button type="submit" form="reward-form-@reward.Id">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table><!--end /table-->
+            </div><!--end /tableresponsive-->
+        </div><!--end card-body-->
+    </div><!--end card-->
+</div>
