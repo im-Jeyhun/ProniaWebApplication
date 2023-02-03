@@ -1,0 +1,122 @@
+﻿@model List<ProductCookieViewModel>
+
+<form action="javascript:void(0)">
+    <div class="table-content table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="product_remove">remove</th>
+                    <th class="product-thumbnail">images</th>
+                    <th class="cart-product-name">Product</th>
+                    <th class="product-price">Unit Price</th>
+                    <th class="cart-product-name">Product Color</th>
+                    <th class="cart-product-name">Product Size</th>
+                    <th class="product-quantity">Quantity</th>
+                    <th class="product-subtotal">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+
+                    <tr>
+                        <td class="product_remove">
+                            <a asp-route="client-cart-delete" asp-route-plantId="@product.Id" class="product-remove-bulke">
+                                <i class="pe-7s-close"
+                               data-tippy="Remove"
+                               data-tippy-inertia="true"
+                               data-tippy-animation="shift-away"
+                               data-tippy-delay="50"
+                               data-tippy-arrow="true"
+                               data-tippy-theme="sharpborder"></i>
+                            </a>
+                            <a class="update-shopcart" asp-route="client-shop-update"></a>
+
+                        </td>
+                        <td class="product-thumbnail">
+                            <a href="#">
+                                <img src="@product.ImageUrl"
+                                 alt="Cart Thumbnail" />
+                            </a>
+                        </td>
+                        <td class="product-name">
+                            <a href="#">@product.Name</a>
+                        </td>
+                        <td class="product-price">
+                            <span class="amount">$@product.Price</span>
+                        </td>
+                        <td class="quantity">
+                            <a class="product-counter" asp-route="client-cart-list-async" asp-route-id="@product.Id">
+
+                            </a>
+                            <select class="nice-select wide border-bottom-0 rounded-0 change-product-color " asp-for="@product.ColorId," asp-items="@(new SelectList(@product.Colors, nameof(ProductCookieViewModel.ColorItemViewModel.Id), nameof(ProductCookieViewModel.ColorItemViewModel.Name)))"></select>
+
+                        </td>
+                        <td class="quantity">
+                            <a class="product-counter" asp-route="client-cart-list-async" asp-route-id="@product.Id"> </a>
+                            <select class="nice-select wide border-bottom-0 rounded-0 change-product-size " asp-for="@product.SizeId," asp-items="@(new SelectList(@product.Sizes, nameof(ProductCookieViewModel.ColorItemViewModel.Id), nameof(ProductCookieViewModel.ColorItemViewModel.Name)))"></select>
+                        </td>
+
+                        <td class="quantity">
+                            <div class="cart-plus-minus">
+                                <a class="product-decounter" asp-route="client-cart-delete-invidual" asp-route-plantId="@product.Id">
+                                    -
+                                </a>
+
+                                <span class="amount">@product.Quantity</span>
+
+
+                                <a class="update-shopcart" asp-route="client-shop-update"></a>
+
+                                <a class="product-counter" asp-route="client-cart-list-async" asp-route-id="@product.Id">
+                                    +
+                                </a>
+
+                            </div>
+                        </td>
+                        <td class="product-subtotal">
+                            <span class="amount">$@product.Total</span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="coupon-all">
+                <div class="coupon">
+                    <input id="coupon_code"
+                           class="input-text"
+                           name="coupon_code"
+                           value=""
+                           placeholder="Coupon code"
+                           type="text" />
+                    <input class="button mt-xxs-30"
+                           name="apply_coupon"
+                           value="Apply coupon"
+                           type="submit" />
+                </div>
+                <div class="coupon2">
+                    <input class="button"
+                           name="update_cart"
+                           value="Update cart"
+                           type="submit" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 ml-auto">
+            <div class="cart-page-total">
+                <h2>Cart totals</h2>
+                <ul>
+                    <li>Subtotal <span>$@Model.Sum(p => p.Total)</span></li>
+                    <li>Total <span>$79.35</span></li>
+                </ul>
+                <a asp-route="client-checkout-checkoutlist">Proceed to checkout</a>
+            </div>
+        </div>
+    </div>
+</form>
