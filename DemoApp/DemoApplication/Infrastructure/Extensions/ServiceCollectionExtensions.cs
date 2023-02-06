@@ -20,7 +20,7 @@ namespace DemoApplication.Infrastructure.Extensions
                 .AddCookie(o =>
                 {
                     o.Cookie.Name = "Identity";
-                    o.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                    o.ExpireTimeSpan = TimeSpan.FromMinutes(1);
                     o.LoginPath = "/auth/login";
                     o.AccessDeniedPath = "/admin/auth/login";
                 });

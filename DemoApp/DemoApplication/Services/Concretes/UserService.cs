@@ -87,7 +87,7 @@ namespace DemoApplication.Services.Concretes
 
         }
 
-        public async Task SignInAsync(Guid id, string? role = null)
+        public async Task SignInAsync(Guid id, string? role = null , bool rememberMe = default)
         {
             var claims = new List<Claim>
             {
@@ -102,16 +102,20 @@ namespace DemoApplication.Services.Concretes
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var userPrincipal = new ClaimsPrincipal(identity);
 
-            await _httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
+            var Remember = new AuthenticationProperties
+            {
+                IsPersistent = rememberMe
+            };
+            await _httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal , Remember);
         }
 
-        public async Task SignInAsync(string? email, string? password, string? role = null)
+        public async Task SignInAsync(string? email, string? password, string? role = null, bool rememberMe = default)
         {
             var user = await _dataContext.Users.FirstAsync(u => u.Email == email);
 
             if (user is not null && BC.Verify(password, user.Password) && user.IsEmailConfirmed == true)
             {
-                await SignInAsync(user.Id, role);
+                await SignInAsync(user.Id, role , rememberMe);
             }
 
         }

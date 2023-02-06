@@ -1,6 +1,7 @@
 ﻿using DemoApplication.Areas.Client.ViewModels.Authentication;
 using DemoApplication.Contracts.Email;
 using DemoApplication.Contracts.Identity;
+using DemoApplication.Contracts.User;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Services.Abstracts;
@@ -65,7 +66,10 @@ namespace DemoApplication.Controllers
             }
 
 
-            await _userService.SignInAsync(model!.Email, model!.Password);
+            await _userService.SignInAsync(model!.Email , model!.Password , "user",
+
+
+                model.RememberMe != null ? model.RememberMe : default);
             return RedirectToRoute("client-home-index");
 
 

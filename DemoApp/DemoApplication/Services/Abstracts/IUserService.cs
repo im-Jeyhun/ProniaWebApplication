@@ -12,8 +12,8 @@ namespace DemoApplication.Services.Abstracts
 
         public bool IsEmailConfirmed(string email);
         string GetCurrentUserFullName();
-        Task SignInAsync(Guid id, string? role = null);
-        Task SignInAsync(string? email, string? password, string? role = null);
+        Task SignInAsync(Guid id, string? role = null , bool rememberMe = default);
+        Task SignInAsync(string? email, string? password, string? role = null , bool rememberMe = default);
         Task CreateAsync(RegisterViewModel model);
         Task SignOutAsync();
 
